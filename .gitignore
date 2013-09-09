@@ -16,3 +16,18 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+# librarian-chef
+/cookbooks
+
+# vagrant
+.vagrant
+.vagrant.d
+
+# test-kitchen
+.kitchen/
+.kitchen.local.yml
+.librarian
+
+# custom gems (in development)
+gems/

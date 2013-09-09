@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+site 'http://community.opscode.com/api/v1'
+
+# Include my own cookbooks
+%w( devbox ).each do |cb|
+  cookbook cb, :path => "vendor/cookbooks/#{cb}"
+end
+
+cookbook 'locale', :git => 'https://github.com/fnordfish/chef-locale.git'
+cookbook "ruby_install", :git => 'https://github.com/dotless-de/chef-ruby_install.git'

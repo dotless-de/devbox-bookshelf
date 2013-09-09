@@ -1,0 +1,84 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # All Vagrant configuration is done here. The most common configuration
+  # options are documented and commented below. For a complete reference,
+  # please see the online documentation at vagrantup.com.
+
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "dotless-centos-6.4"
+
+  # The url from where the 'config.vm.box' box will be fetched if it
+  # doesn't already exist on the user's system.
+  config.vm.box_url = "./packer-centos64_x86_64.vmware.box"
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  # config.vm.network :forwarded_port, guest: 80, host: 8080
+
+  # Create a private network, which allows host-only access to the machine
+  # using a specific IP.
+  config.vm.network :private_network, ip: "33.33.33.33"
+
+  config.ssh.forward_agent = true
+
+  config.dns.tld = "dev"
+  config.dns.patterns = /^.*devbox.dev$/
+  config.vm.hostname = "devbox"
+
+  config.vm.provider "vmware_fusion" do |v|
+    # v.vmx["displayName"] = 'devbox'
+    v.vmx["memsize"] = "2048"
+    v.vmx["numvcpus"] = "2"
+  end
+
+  # Enable provisioning with chef solo, specifying a cookbooks path, roles
+  # path, and data_bags path (all relative to this Vagrantfile), and adding
+  # some recipes and/or roles.
+  #
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = ["cookbooks"]
+    chef.roles_path = "roles"
+    # chef.data_bags_path = "data_bags"
+
+    # create a role or add recipes manually here:
+    chef.add_recipe "devbox"
+    chef.add_recipe "devbox::nfs_server"
+    chef.add_recipe "devbox::nodejs"
+    chef.add_recipe "devbox::ruby"
+    chef.add_recipe "devbox::imagemagick"
+    chef.add_recipe "devbox::lib_qt_webkit"
+    chef.add_recipe "devbox::postgresql_server"
+    # chef.add_recipe "devbox::mysql_server"
+
+
+    host_locales = {
+      # overwrite lang IF YOU KNOW WHAT YOU ARE DOING
+      # this meight break e.g. postgres
+      # lang:     ENV['LANG'],
+      lang:     'en_US.utf8',
+      language: 'en_US:de_DE:',
+
+      # make sure to not accidentally override LC_ALL
+      # usually LC_ALL is not set on host systems
+      # if LC_ALL is set, we use it, otherwise we explicitly unset it
+      # lc_all:   ENV['LC_ALL'] || ""
+    } #.merge(ENV.select { |k,v| k =~ /LC_/ }.inject({}) { |memo, (k,v)| memo[k.downcase] = v; memo })
+
+    # You may also specify custom JSON attributes:
+    chef.json.merge!({
+      "locale" => host_locales,
+      "devbox" => {
+        'rubies' => [
+          # 'ruby 2.0.0-p247',
+        ]
+      },
+      "postgresql" => {
+        "version" => "9.2"
+      }
+    })
+  end
+
+end
