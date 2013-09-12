@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'librarian-chef'
 
-gem 'net-ssh', :github => "fnordfish/net-ssh", :branch => 'allow-sendenv'
+gem 'net-ssh', '>= 2.7.0'
 gem 'test-kitchen', '~> 1.0.0.beta3', :group => [:test, :integration], :github => "dotless-de/test-kitchen", :branch => "allow-ssh-forward_agent"
 gem 'kitchen-vagrant', :group => :integration, :github => 'dotless-de/kitchen-vagrant', :branch => 'master'
 
