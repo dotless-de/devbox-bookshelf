@@ -68,8 +68,8 @@ Currently, we are running patched versions of "Net::SSH", "test-kitchen" and
 
 <!-- Links -->
 
-[vagrant]:            [http://vagrantup.com]
-[dotless-packer-tpl]: [https://github.com/dotless-de/packer-templates]
-[test-kitchen]:       [https://github.com/opscode/test-kitchen]
-[chruby]:             [https://github.com/postmodern/chruby]
-[ruby-install]:       [https://github.com/postmodern/ruby-install]
+[vagrant]:            http://vagrantup.com
+[dotless-packer-tpl]: https://github.com/dotless-de/packer-templates
+[test-kitchen]:       https://github.com/opscode/test-kitchen
+[chruby]:             https://github.com/postmodern/chruby
+[ruby-install]:       https://github.com/postmodern/ruby-install
