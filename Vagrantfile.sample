@@ -7,11 +7,21 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "dotless-centos-6.4"
+  # Simply pick on of those:
+  config.vm.box = "dotless-ubuntu-12.04"
+  # config.vm.box = "dotless-centos-6.4"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "./packer-centos64_x86_64.vmware.box"
+  # Take care to use the correct image for the provider you're using
+  # for this machine!
+  # Pick one of those ...
+  # config.vm.box_url = "http://download.dotless.de/vagrant/packer-ubuntu1204_x86_64.virtualbox.box"
+  config.vm.box_url = "http://download.dotless.de/vagrant/packer-ubuntu1204_x86_64.vmware.box"
+  # config.vm.box_url = "http://download.dotless.de/vagrant/packer-centos64_x86_64.virtualbox.box"
+  # config.vm.box_url = "http://download.dotless.de/vagrant/packer-centos64_x86_64.vmware.box"
+  # ... or build your own:
+  # config.vm.box_url = "/local/path/to/my_base.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
