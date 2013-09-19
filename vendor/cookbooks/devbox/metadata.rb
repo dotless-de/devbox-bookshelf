@@ -9,8 +9,19 @@ version          '0.1.0'
 supports 'ubuntu', ">= 12.04"
 supports 'centos', ">= 6.4"
 
-%w{ apt yum sudo openssh iptables git locale database postgresql mysql nodejs ruby_install imagemagick apache2 }.each do |cookbook|
-  depends cookbook
-end
+depends "apt"
+depends "yum"
+depends "sudo"
+depends "openssh"
+depends "iptables"
+depends "git"
+depends "locale"
+depends "database"
+depends "postgresql"
+depends "mysql"
+depends "nodejs"
+depends "ruby_install"
+depends "imagemagick"
+depends "apache2"
 
 depends "nfs", ">= 0.3.0"
