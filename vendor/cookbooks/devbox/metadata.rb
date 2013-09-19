@@ -24,6 +24,7 @@ depends "postgresql"
 depends "mysql"
 
 depends "git"
+depends "subversion"
 
 depends "ruby_install"
 depends "imagemagick"
