@@ -4,19 +4,20 @@ driver_config:
   require_chef_omnibus: false
 
 platforms:
-# - name: ubuntu-12.04
-#   driver_config:
-#     provider: vmware_fusion
-#     use_vagrant_provision: false
-#     box: dotless-ubuntu-12.04
-#     box_url: /Volumes/HD2/virtualboxes/packer-ubuntu1204_x86_64.vmware.box
-#     customize:
-#       memsize: 2048
-#       numvcpus: 2
-#     network:
-#     - ["private_network", {ip: "33.33.33.133"}]
-#     ssh:
-#       forward_agent: true
+- name: ubuntu-12.04
+  driver_config:
+    provider: vmware_fusion
+    use_vagrant_provision: false
+    box: dotless-ubuntu-12.04
+    box_url: /Volumes/HD2/virtualboxes/packer-ubuntu1204_x86_64.vmware.box
+    customize:
+      memsize: 2048
+      numvcpus: 2
+    network:
+    - ["private_network", {ip: "33.33.33.134"}]
+    ssh:
+      forward_agent: true
+
 - name: centos-6.4
   driver_config:
     provider: vmware_fusion
@@ -55,5 +56,18 @@ suites:
       language: 'en_US:de_DE:'
     devbox:
       rubies: [ 'ruby 1.9.3-p392' ]
+    postgresql:
+      version: "9.2"
+
+
+- name: postgresql
+  run_list:
+  - "recipe[devbox]"
+  - "recipe[devbox::ruby]"
+  - "recipe[devbox::postgresql_server]"
+  attributes:
+    locale:
+      lang:     'en_US.utf8'
+      language: 'en_US:de_DE:'
     postgresql:
       version: "9.2"

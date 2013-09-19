@@ -9,6 +9,26 @@
 # This a a wrapper recipe for installing a
 # development-friendly postgresql server
 
+include_recipe 'apt'
+
+case node['platform']
+when "ubuntu"
+  if (node['platform_version'].to_f == 12.04) && (node['postgresql']['version'] == "9.2") && (! node['postgresql']['enable_pgdg_apt'])
+    # add Pitti PPA apt repository for old postgresql version
+
+    apt_repository "pitti-postgresql" do
+      uri "http://ppa.launchpad.net/pitti/postgresql/ubuntu"
+      distribution node['lsb']['codename']
+      components ["main"]
+      keyserver "keyserver.ubuntu.com"
+      key "8683D8A2"
+      deb_src true
+      action :add
+    end
+    resources("apt_repository[pitti-postgresql]").run_action(:add)
+  end
+end
+
 include_recipe "postgresql"
 include_recipe "postgresql::ruby"
 include_recipe "postgresql::server"

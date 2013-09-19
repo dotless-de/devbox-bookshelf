@@ -38,9 +38,15 @@ default['postgresql']["pg_hba"] = [
 ]
 
 case node['platform']
-when "debian"
-  default['postgresql']['enable_pgdg_apt'] = true
-  default['postgresql']['server']['service_name'] = "postgresql-#{node['postgresql']['version']}"
+when "ubuntu"
+
+  if (node['platform_version'].to_f == 12.04) && (node['postgresql']['version'] == "9.2") && (! node['postgresql']['enable_pgdg_apt'])
+    override['postgresql']['client']['packages']  = %w{ postgresql-client-9.2 libpq-dev }
+    override['postgresql']['server']['packages']  = %w{ postgresql-9.2 }
+    override['postgresql']['contrib']['packages'] = %w{ postgresql-contrib-9.2 }
+
+    override['postgresql']['server']['service_name'] = "postgresql"
+  end
 
 when "redhat", "centos", "scientific", "oracle"
   default['postgresql']['enable_pgdg_yum'] = true
