@@ -14,14 +14,18 @@ depends "yum"
 depends "sudo"
 depends "openssh"
 depends "iptables"
-depends "git"
 depends "locale"
+depends "nfs", ">= 0.3.0"
+
+depends "apache2"
+
 depends "database"
 depends "postgresql"
 depends "mysql"
-depends "nodejs"
+
+depends "git"
+
 depends "ruby_install"
 depends "imagemagick"
-depends "apache2"
+depends "nodejs"
 
-depends "nfs", ">= 0.3.0"
