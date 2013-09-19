@@ -71,3 +71,12 @@ suites:
       language: 'en_US:de_DE:'
     postgresql:
       version: "9.2"
+
+- name: php-apache
+  run_list:
+    - "recipe[devbox]"
+    - "recipe[devbox::nfs_server]"
+    - "recipe[devbox::nodejs]"
+    - "recipe[devbox::imagemagick]"
+    - "recipe[devbox::mysql_server]"
+    - "recipe[devbox::php-apache]"

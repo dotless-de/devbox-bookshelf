@@ -9,7 +9,7 @@ version          '0.1.0'
 supports 'ubuntu', ">= 12.04"
 supports 'centos', ">= 6.4"
 
-%w{ apt yum sudo openssh iptables git locale database postgresql mysql nodejs ruby_install imagemagick }.each do |cookbook|
+%w{ apt yum sudo openssh iptables git locale database postgresql mysql nodejs ruby_install imagemagick apache2 }.each do |cookbook|
   depends cookbook
 end
 

@@ -1,6 +1,7 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
+    apache2 (1.7.0)
     apt (2.1.1)
     ark (0.3.2)
     aws (0.101.4)
@@ -67,6 +68,7 @@ PATH
   remote: vendor/cookbooks/devbox
   specs:
     devbox (0.1.0)
+      apache2 (>= 0.0.0)
       apt (>= 0.0.0)
       database (>= 0.0.0)
       git (>= 0.0.0)
