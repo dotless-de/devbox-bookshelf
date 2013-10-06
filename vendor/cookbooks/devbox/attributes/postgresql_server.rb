@@ -1,11 +1,13 @@
 include_attribute "postgresql"
 
 default['postgresql']['version'] = "9.1"
-default['postgresql']['config']['listen_addresses'] = "*"
-default['postgresql']['config']['lc_messages'] = 'en_US.UTF-8'
-default['postgresql']['config']['lc_monetary'] = 'en_US.UTF-8'
-default['postgresql']['config']['lc_numeric']  = 'en_US.UTF-8'
-default['postgresql']['config']['lc_time']     = 'en_US.UTF-8'
+
+default['postgresql']['config']['listen_addresses']           = "*"
+default['postgresql']['config']["authentication_timeout"]     = "10s"
+default['postgresql']['config']['lc_messages']                = 'en_US.UTF-8'
+default['postgresql']['config']['lc_monetary']                = 'en_US.UTF-8'
+default['postgresql']['config']['lc_numeric']                 = 'en_US.UTF-8'
+default['postgresql']['config']['lc_time']                    = 'en_US.UTF-8'
 default['postgresql']['config']['default_text_search_config'] = 'pg_catalog.english'
 
 default['postgresql']["password"] = {
@@ -40,10 +42,19 @@ default['postgresql']["pg_hba"] = [
 case node['platform']
 when "ubuntu"
 
+  default['postgresql']['config']['ssl']                      = true
+  default['postgresql']['config']["ssl_cert_file"]            = '/etc/ssl/certs/ssl-cert-snakeoil.pem'
+  default['postgresql']['config']["ssl_key_file"]             = '/etc/ssl/private/ssl-cert-snakeoil.key'
+  default['postgresql']['config']["#ssl_ciphers"]             = 'ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH'
+  default['postgresql']['config']["#ssl_renegotiation_limit"] = '512MB'
+  default['postgresql']['config']["#ssl_ca_file"]             = ''
+  default['postgresql']['config']["#ssl_crl_file"]            = ''
+
+
   if (node['platform_version'].to_f == 12.04) && (node['postgresql']['version'] == "9.2") && (! node['postgresql']['enable_pgdg_apt'])
-    override['postgresql']['client']['packages']  = %w{ postgresql-client-9.2 libpq-dev }
-    override['postgresql']['server']['packages']  = %w{ postgresql-9.2 }
-    override['postgresql']['contrib']['packages'] = %w{ postgresql-contrib-9.2 }
+    override['postgresql']['client']['packages']     = %w{ postgresql-client-9.2 libpq-dev }
+    override['postgresql']['server']['packages']     = %w{ postgresql-9.2 }
+    override['postgresql']['contrib']['packages']    = %w{ postgresql-contrib-9.2 }
 
     override['postgresql']['server']['service_name'] = "postgresql"
   end
@@ -51,12 +62,11 @@ when "ubuntu"
 when "redhat", "centos", "scientific", "oracle"
   default['postgresql']['enable_pgdg_yum'] = true
 
-  default['postgresql']['dir'] = "/var/lib/pgsql/#{node['postgresql']['version']}/data"
+  default['postgresql']['dir']                    = "/var/lib/pgsql/#{node['postgresql']['version']}/data"
 
-  default['postgresql']['client']['packages'] = ["postgresql#{node['postgresql']['version'].split('.').join}", "postgresql#{node['postgresql']['version'].split('.').join}-devel"]
-  default['postgresql']['server']['packages'] = ["postgresql#{node['postgresql']['version'].split('.').join}-server"]
-  default['postgresql']['contrib']['packages'] = ["postgresql#{node['postgresql']['version'].split('.').join}-contrib"]
-
+  default['postgresql']['client']['packages']     = ["postgresql#{node['postgresql']['version'].split('.').join}", "postgresql#{node['postgresql']['version'].split('.').join}-devel"]
+  default['postgresql']['server']['packages']     = ["postgresql#{node['postgresql']['version'].split('.').join}-server"]
+  default['postgresql']['contrib']['packages']    = ["postgresql#{node['postgresql']['version'].split('.').join}-contrib"]
 
   default['postgresql']['server']['service_name'] = "postgresql-#{node['postgresql']['version']}"
 end
