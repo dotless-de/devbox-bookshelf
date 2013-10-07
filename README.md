@@ -62,7 +62,7 @@ test by running e.g. `bundle exec kitchen verify "minimal-.*"`.
 
 **Sidenote**
 
-Currently, we are running patched versions of "Net::SSH", "test-kitchen" and
+Currently, we are running patched versions of "test-kitchen" and
 "kitchen-vagrant" to get SSH agent and environment variable forwards tested.
 
 
