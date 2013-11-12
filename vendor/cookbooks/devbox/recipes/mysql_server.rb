@@ -1,3 +1,5 @@
-include_recipe "mysql::server"
-include_recipe "mysql::client"
-include_recipe "mysql::ruby"
+if node["devbox"]["mysql_server"]["use_percona"]
+  include_recipe 'devbox::_percona_mysql'
+else
+  include_recipe 'devbox::_mysql'
+end
