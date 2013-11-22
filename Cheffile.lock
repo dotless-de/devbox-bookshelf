@@ -38,6 +38,8 @@ SITE
       apt (>= 0.0.0)
       build-essential (>= 0.0.0)
       openssl (>= 0.0.0)
+    redisio (1.7.0)
+      ulimit (>= 0.1.2)
     runit (1.2.0)
       build-essential (>= 0.0.0)
       yum (>= 0.0.0)
@@ -45,6 +47,7 @@ SITE
       apache2 (>= 0.0.0)
       windows (>= 0.0.0)
     sudo (2.2.0)
+    ulimit (0.3.2)
     windows (1.10.0)
       chef_handler (>= 0.0.0)
     xfs (1.1.0)
@@ -91,5 +94,6 @@ PATH
 DEPENDENCIES
   devbox (>= 0)
   locale (>= 0)
+  redisio (>= 0)
   ruby_install (>= 0)
 
