@@ -60,12 +60,6 @@ A test instance is destroyed when tests on this box passed. You may resume a
 test by running e.g. `bundle exec kitchen verify "minimal-.*"`.
 
 
-**Sidenote**
-
-Currently, we are running patched versions of "test-kitchen" and
-"kitchen-vagrant" to get SSH agent and environment variable forwards tested.
-
-
 <!-- Links -->
 
 [vagrant]:            http://vagrantup.com

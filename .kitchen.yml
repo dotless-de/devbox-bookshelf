@@ -1,6 +1,7 @@
 ---
-driver_plugin: vagrant
-driver_config:
+driver:
+  name: vagrant
+  vagrantfile_erb: 'test/Vagrantfile.erb'
   require_chef_omnibus: false
 
 platforms:
