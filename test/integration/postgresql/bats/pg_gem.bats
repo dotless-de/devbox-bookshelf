@@ -1,5 +1,6 @@
 @test "pg gem for chef installed" {
-	/opt/chef/embedded/bin/gem list pg | grep pg
+	# bats overwrited GEM_PATHS, so we need to run as vagrant
+	sudo -u vagrant /opt/chef/embedded/bin/gem list pg | grep pg
 }
 
 @test "can install pg gem for user-ruby" {
