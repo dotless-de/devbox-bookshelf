@@ -69,7 +69,7 @@ Vagrant.configure("2") do |config|
       # this meight break e.g. postgres
       # lang:     ENV['LANG'],
       lang:     'en_US.utf8',
-      language: 'en_US:de_DE:',
+      language: 'en_US',
 
       # make sure to not accidentally override LC_ALL
       # usually LC_ALL is not set on host systems

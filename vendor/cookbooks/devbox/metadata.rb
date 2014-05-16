@@ -22,6 +22,7 @@ depends "apache2"
 depends "database"
 depends "postgresql"
 depends "mysql"
+depends "percona"
 
 depends "git"
 depends "subversion"
