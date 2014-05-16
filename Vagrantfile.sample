@@ -87,6 +87,8 @@ Vagrant.configure("2") do |config|
       },
       "postgresql" => {
         "version" => "9.2"
+        # or want to use Postgres APT PPT?
+        # "enable_pgdg_apt" => true
       }
     })
   end
