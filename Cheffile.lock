@@ -2,8 +2,8 @@ SITE
   remote: http://community.opscode.com/api/v1
   specs:
     apache2 (1.7.0)
-    apt (2.1.1)
-    ark (0.3.2)
+    apt (2.4.0)
+    ark (0.8.2)
     aws (0.101.4)
     build-essential (1.4.2)
     chef_handler (1.1.4)
@@ -51,14 +51,14 @@ SITE
     windows (1.10.0)
       chef_handler (>= 0.0.0)
     xfs (1.1.0)
-    yum (2.3.2)
+    yum (3.2.0)
 
 GIT
   remote: https://github.com/dotless-de/chef-ruby_install.git
   ref: master
-  sha: 81c93bd7a0147052d36fb9d19f995560fc5c4aa9
+  sha: 37667eb89463e6f785b39342353b49baa7aefa88
   specs:
-    ruby_install (0.1.0)
+    ruby_install (0.1.2)
       apt (>= 0.0.0)
       ark (>= 0.0.0)
       yum (>= 0.0.0)
