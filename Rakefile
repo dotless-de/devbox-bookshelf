@@ -15,7 +15,11 @@ task :foodcritic do
 
     print "Running foodcritic ... "
     linter = FoodCritic::Linter.new
-    result = linter.check cookbook_paths: sandbox_paths[:cookbooks], role_pahts: sandbox_paths[:roles], fail_tags: ['any']
+    result = linter.check \
+      cookbook_paths: sandbox_paths[:cookbooks],
+      role_pahts: sandbox_paths[:roles],
+      exclude_paths: exclude_paths,
+      fail_tags: ['any']
 
     if result.failed? or result.warnings.size > 0
       puts "FAILED"
@@ -24,6 +28,10 @@ task :foodcritic do
     else
       puts "OK"
       puts result
+    end
+    if exclude_paths.any?
+      puts "WARNING! Excluded those files:"
+      puts exclude_paths.join($/)
     end
   else
     puts "WARNING: Skipped running foodcritic. Ruby 1.9.2 or higher required"
@@ -57,3 +65,6 @@ recipes resources templates}
   {roles: roles_trgt, cookbooks: cookbooks_trgt}
 end
 
+def exclude_paths
+  ['devbox/recipes/_mysql.rb']
+end
