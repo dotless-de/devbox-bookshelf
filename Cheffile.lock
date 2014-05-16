@@ -61,6 +61,7 @@ SITE
     yum (3.2.0)
     yum-epel (0.3.6)
       yum (~> 3.0)
+    zsh (1.0.0)
 
 GIT
   remote: https://github.com/dotless-de/chef-ruby_install.git
@@ -90,6 +91,14 @@ GIT
       openssl (>= 0.0.0)
       yum (>= 0.0.0)
 
+GIT
+  remote: https://github.com/shingara/oh-my-zsh-chef.git
+  ref: master
+  sha: 9ac6131c041f0dc55f80ccdeb23356c1105995a8
+  specs:
+    oh_my_zsh (0.0.1)
+      git (>= 0.0.0)
+
 PATH
   remote: vendor/cookbooks/devbox
   specs:
@@ -104,17 +113,21 @@ PATH
       mysql (>= 0.0.0)
       nfs (>= 0.3.0)
       nodejs (>= 0.0.0)
+      oh_my_zsh (>= 0.0.0)
       openssh (>= 0.0.0)
       percona (>= 0.0.0)
       postgresql (>= 0.0.0)
+      redisio (>= 0.0.0)
       ruby_install (>= 0.0.0)
       subversion (>= 0.0.0)
       sudo (>= 0.0.0)
       yum (>= 0.0.0)
+      zsh (>= 0.0.0)
 
 DEPENDENCIES
   devbox (>= 0)
   locale (>= 0)
+  oh_my_zsh (>= 0)
   percona (>= 0)
   redisio (>= 0)
   ruby_install (>= 0)

@@ -23,6 +23,7 @@ depends "database"
 depends "postgresql"
 depends "mysql"
 depends "percona"
+depends "redisio"
 
 depends "git"
 depends "subversion"
@@ -31,3 +32,5 @@ depends "ruby_install"
 depends "imagemagick"
 depends "nodejs"
 
+depends "zsh"
+depends "oh_my_zsh"
