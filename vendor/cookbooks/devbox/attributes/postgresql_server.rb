@@ -70,3 +70,7 @@ when "redhat", "centos", "scientific", "oracle"
 
   default['postgresql']['server']['service_name'] = "postgresql-#{node['postgresql']['version']}"
 end
+
+# save us some resources for development
+default['postgresql']['config_pgtune']['db_type'] = 'desktop'
+

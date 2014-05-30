@@ -32,7 +32,9 @@ end
 include_recipe "postgresql"
 include_recipe "postgresql::ruby"
 include_recipe "postgresql::server"
+include_recipe "postgresql::contrib"
 include_recipe "postgresql::config_initdb"
+include_recipe "postgresql::config_pgtune"
 
 begin
   r = resources(:template => "#{node['postgresql']['dir']}/pg_hba.conf")
