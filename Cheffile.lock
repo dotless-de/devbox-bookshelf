@@ -102,7 +102,7 @@ GIT
 PATH
   remote: vendor/cookbooks/devbox
   specs:
-    devbox (0.2.0)
+    devbox (0.2.1)
       apache2 (>= 0.0.0)
       apt (>= 0.0.0)
       database (>= 0.0.0)

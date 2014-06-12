@@ -16,7 +16,7 @@ include_recipe "iptables::disabled"
 include_recipe "openssh"
 include_recipe "sudo"
 
-include_recipe 'git'
+include_recipe 'devbox::git'
 include_recipe "locale"
 
 # basic packages
