@@ -1,4 +1,9 @@
-include_recipe "git"
+case node['devbox']['git']['mode']
+when 'source'
+  include_recipe "git::source"
+else
+  include_recipe "git"
+end
 
 template "/home/vagrant/.gitconfig" do
   action :create_if_missing

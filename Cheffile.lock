@@ -1,13 +1,17 @@
 SITE
   remote: http://community.opscode.com/api/v1
   specs:
+    7-zip (1.0.2)
+      windows (>= 1.2.2)
     apache2 (1.10.4)
       iptables (>= 0.0.0)
       logrotate (>= 0.0.0)
       pacman (>= 0.0.0)
     apt (1.10.0)
-    ark (0.8.2)
-    aws (2.2.0)
+    ark (0.9.0)
+      7-zip (>= 0.0.0)
+      windows (>= 0.0.0)
+    aws (2.2.2)
     build-essential (1.4.4)
     chef_handler (1.1.6)
     database (2.0.0)
@@ -26,7 +30,7 @@ SITE
     imagemagick (0.2.3)
     iptables (0.13.2)
     line (0.5.1)
-    logrotate (1.5.0)
+    logrotate (1.6.0)
     mysql (3.0.12)
       build-essential (~> 1.4)
       openssl (~> 1.1)
@@ -58,7 +62,7 @@ SITE
     windows (1.31.0)
       chef_handler (>= 0.0.0)
     xfs (1.1.0)
-    yum (3.2.0)
+    yum (3.2.2)
     yum-epel (0.3.6)
       yum (~> 3.0)
     zsh (1.0.0)
@@ -94,7 +98,7 @@ GIT
 GIT
   remote: https://github.com/shingara/oh-my-zsh-chef.git
   ref: master
-  sha: 9ac6131c041f0dc55f80ccdeb23356c1105995a8
+  sha: 84b899dba57c563e687e581d04f808f8c93c2a55
   specs:
     oh_my_zsh (0.0.1)
       git (>= 0.0.0)
@@ -102,7 +106,7 @@ GIT
 PATH
   remote: vendor/cookbooks/devbox
   specs:
-    devbox (0.2.0)
+    devbox (0.2.1)
       apache2 (>= 0.0.0)
       apt (>= 0.0.0)
       database (>= 0.0.0)
